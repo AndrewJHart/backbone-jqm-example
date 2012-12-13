@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="ui-mobile-rendering">
+    <head>
+        <title>
+         MSCNS Real-Time Messaging
+        </title>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+		<link rel="stylesheet" href="css/styles.css"/>
+        <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css"/>
+    </head>
+
+	<body>
+
+
+    <!-- jquery mobile templates to be handled by underscore for backbone -->
+
+    <!-- individual message li template - multiples form a collection appended to a ul dynamically -->
+    <script type="text/template" id="message-list-item">
+        <a href="#<%= id %>/">
+            <h4><%= name %></h4>
+            <p><%= description %></p>
+        </a>
+    </script>
+
+    <!-- Message Create View -->
+    <script type="text/template" id="message-create-item">
+        <div data-role="header">
+            <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
+            <h1>Message Detail</h1>
+            <a href="#" data-icon="search" class="search ui-btn-right">Search</a>
+        </div>
+
+        <div data-role="content">
+            <h3>Create a new Message</h3>
+            <ul data-role="listview" data-inset="true">
+
+                <li><label for="name">Name:</label></li>
+                <li><input id="name" type="text" name="name" data-mini="true" value="<%= name %>" required /></li>
+                <li>                <label for="description">Message:</label></li>
+                <li><textarea id="description" name="description" value="<%= description %>" /></li>
+
+                <li><a href="#" data-icon="plus" class="save">Create</a></li>
+            </ul>
+        </div>
+    </script>
+
+    <!-- message detail template -->
+    <script type="text/template" id="message-detail">
+        <div data-role="header">
+            <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
+            <h1>Message Detail</h1>
+            <a href="#" data-icon="search" class="search ui-btn-right">Search</a>
+        </div>
+
+        <div data-role="content">
+            <div class="message-details">
+                <h3><%= name %></h3>
+                <p><%= description %></p>
+            </div>
+
+            <ul data-role="listview" data-inset="true" class="action-list">
+                <li><a class="delete back" href="#"><h3>Delete Message</h3></a></li>
+                <li><a href="mailto:dhart@mscns.com"><h3>Email</h3><p></p></a></li>
+            </ul>
+
+        </div>
+    </script>
+
+    <!-- Search Header -->
+    <script type="text/template" id="search-main">
+        <div data-role="header">
+            <h1>MSCNS Instant Messaging</h1>
+            <a href="#" data-icon="forward" class="add-message ui-btn-right">Add Message</a>
+        </div>
+
+        <div class="ui-bar ui-bar-c">
+            <input type="search" class="search-query" placeholder="Search"/>
+        </div>
+
+        <div id="welcome" style="padding: 12px; text-align: center;">
+            <img src="img/mscns_black_logo.png" style="padding-top: 40px;">
+
+            <h2>Welcome to the MSCNS IM app.</h2>
+
+            <p>We have thrown together this app with jQuery Mobile and Backbone over a RESTful API.</p>
+        </div>
+
+
+        <div data-role="content">
+            <ul data-role="listview" id='myList'></ul>
+        </div>
+    </script>
+
+
+		
+    <!-- Scripts -->
+	<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <!-- change ajax defaults -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajaxSetup({
+                /* cache: false, */
+                crossDomain: true
+            });
+        });
+    </script>
+    <script src="js/jqm-config.js"></script>
+    <script src="js/libs/jquery.mobile-1.0.1.min.js"></script>
+
+    
+    <!-- Include Backbone and underscore -->
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/backbone-min.js"></script>
+    <script src="js/libs/backbone-live.js"></script>
+    
+    <!-- Include our backbone app layout -->
+    <script src="js/app.js"></script>
+    
+</body>
+</html>
